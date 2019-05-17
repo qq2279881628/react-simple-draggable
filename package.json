@@ -1,0 +1,61 @@
+{
+  "name": "react-simple-draggable",
+  "version": "1.0.1",
+  "description": " A simple draggable component for react",
+  "main": "./lib/draggable.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "scripts": {
+    "start": "webpack --config webpack.test.config.js",
+    "build": "webpack --config webpack.config.js --color"
+  },
+  "author": "Cenven ceng",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qq2279881628/react-simple-draggable.git"
+  },
+  "keywords": [
+    "react",
+    "draggable",
+    "drag",
+    "useful component",
+    "react-component"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-dynamic-import-webpack": "^1.1.0",
+    "babel-plugin-import": "^1.9.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    
+  },
+  "npmName": "react-simple-draggable",
+  "npmFileMap": [
+    {
+      "basePath": "/lib/",
+      "files": [
+        "*.js"
+      ]
+    }
+  ],
+  "homepage": "react-simple-draggable"
+}
