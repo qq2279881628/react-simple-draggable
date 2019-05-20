@@ -144,17 +144,71 @@ var App = function (_React$Component) {
       console.dir(_draggable2.default);
       return _react2.default.createElement(
         "div",
-        { className: "drag_wrap", style: { width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" } },
+        { className: "container", style: { overflow: 'hidden' } },
         _react2.default.createElement(
-          _draggable2.default,
-          {
-            controled: {
-              left: -100,
-              // top:100,
-              bottom: -100
-            }
-          },
-          _react2.default.createElement("div", { className: "drag_item", style: { width: "200px", height: "200px", backgroundColor: "lightblue" } })
+          "h4",
+          { style: { textAlign: 'center' } },
+          "  left: -100, top:-100, bottom:0"
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "drag_wrap", style: { height: "33.3333%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid lightblue" } },
+          _react2.default.createElement(
+            _draggable2.default,
+            {
+              controled: {
+                left: -100,
+                top: -100,
+                bottom: 0
+              }
+            },
+            _react2.default.createElement("div", { className: "drag_item", style: { width: "200px", height: "200px", backgroundColor: "lightblue" } })
+          )
+        ),
+        _react2.default.createElement(
+          "h4",
+          { style: { textAlign: 'center' } },
+          "left: 0, top: 0, bottom: 0, right: 0 . If you make all parameters of controled zero,it can not be dragging."
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "drag_wrap", style: { height: "33.3333%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid lightblue" } },
+          _react2.default.createElement(
+            _draggable2.default,
+            {
+              controled: {
+                left: 0,
+                top: 0,
+                bottom: 0,
+                right: 0
+              }
+            },
+            _react2.default.createElement("div", { className: "drag_item", style: { width: "200px", height: "200px", backgroundColor: "lightblue" } })
+          )
+        ),
+        _react2.default.createElement(
+          "h4",
+          { style: { textAlign: 'center' } },
+          "If you don`t want to limit a drag area,just make it empty.It would like this:",
+          '<Draggable> XXX </Draggable>'
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "drag_wrap", style: { height: "33.3333%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid lightblue" } },
+          _react2.default.createElement(
+            _draggable2.default,
+            {
+              controled: {}
+            },
+            _react2.default.createElement("div", { className: "drag_item", style: { width: "200px", height: "200px", backgroundColor: "lightblue", margin: "0 3px" } })
+          ),
+          _react2.default.createElement(
+            _draggable2.default,
+            {
+              controled: {}
+            },
+            _react2.default.createElement("div", { className: "drag_item", style: { width: "200px", height: "200px", backgroundColor: "lightblue", margin: "0 3px" } })
+          )
         )
       );
     }
@@ -1712,7 +1766,7 @@ module.exports = function (it) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.5' };
+var core = module.exports = { version: '2.6.6' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -2273,6 +2327,7 @@ var meta = module.exports = {
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
+var DESCRIPTORS = __webpack_require__(/*! ./_descriptors */ "./node_modules/core-js/library/modules/_descriptors.js");
 var getKeys = __webpack_require__(/*! ./_object-keys */ "./node_modules/core-js/library/modules/_object-keys.js");
 var gOPS = __webpack_require__(/*! ./_object-gops */ "./node_modules/core-js/library/modules/_object-gops.js");
 var pIE = __webpack_require__(/*! ./_object-pie */ "./node_modules/core-js/library/modules/_object-pie.js");
@@ -2302,7 +2357,10 @@ module.exports = !$assign || __webpack_require__(/*! ./_fails */ "./node_modules
     var length = keys.length;
     var j = 0;
     var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+    while (length > j) {
+      key = keys[j++];
+      if (!DESCRIPTORS || isEnum.call(S, key)) T[key] = S[key];
+    }
   } return T;
 } : $assign;
 
@@ -3122,12 +3180,14 @@ var enumKeys = __webpack_require__(/*! ./_enum-keys */ "./node_modules/core-js/l
 var isArray = __webpack_require__(/*! ./_is-array */ "./node_modules/core-js/library/modules/_is-array.js");
 var anObject = __webpack_require__(/*! ./_an-object */ "./node_modules/core-js/library/modules/_an-object.js");
 var isObject = __webpack_require__(/*! ./_is-object */ "./node_modules/core-js/library/modules/_is-object.js");
+var toObject = __webpack_require__(/*! ./_to-object */ "./node_modules/core-js/library/modules/_to-object.js");
 var toIObject = __webpack_require__(/*! ./_to-iobject */ "./node_modules/core-js/library/modules/_to-iobject.js");
 var toPrimitive = __webpack_require__(/*! ./_to-primitive */ "./node_modules/core-js/library/modules/_to-primitive.js");
 var createDesc = __webpack_require__(/*! ./_property-desc */ "./node_modules/core-js/library/modules/_property-desc.js");
 var _create = __webpack_require__(/*! ./_object-create */ "./node_modules/core-js/library/modules/_object-create.js");
 var gOPNExt = __webpack_require__(/*! ./_object-gopn-ext */ "./node_modules/core-js/library/modules/_object-gopn-ext.js");
 var $GOPD = __webpack_require__(/*! ./_object-gopd */ "./node_modules/core-js/library/modules/_object-gopd.js");
+var $GOPS = __webpack_require__(/*! ./_object-gops */ "./node_modules/core-js/library/modules/_object-gops.js");
 var $DP = __webpack_require__(/*! ./_object-dp */ "./node_modules/core-js/library/modules/_object-dp.js");
 var $keys = __webpack_require__(/*! ./_object-keys */ "./node_modules/core-js/library/modules/_object-keys.js");
 var gOPD = $GOPD.f;
@@ -3254,7 +3314,7 @@ if (!USE_NATIVE) {
   $DP.f = $defineProperty;
   __webpack_require__(/*! ./_object-gopn */ "./node_modules/core-js/library/modules/_object-gopn.js").f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(/*! ./_object-pie */ "./node_modules/core-js/library/modules/_object-pie.js").f = $propertyIsEnumerable;
-  __webpack_require__(/*! ./_object-gops */ "./node_modules/core-js/library/modules/_object-gops.js").f = $getOwnPropertySymbols;
+  $GOPS.f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(/*! ./_library */ "./node_modules/core-js/library/modules/_library.js")) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
@@ -3303,6 +3363,16 @@ $export($export.S + $export.F * !USE_NATIVE, 'Object', {
   getOwnPropertyNames: $getOwnPropertyNames,
   // 19.1.2.8 Object.getOwnPropertySymbols(O)
   getOwnPropertySymbols: $getOwnPropertySymbols
+});
+
+// Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
+// https://bugs.chromium.org/p/v8/issues/detail?id=3443
+var FAILS_ON_PRIMITIVES = $fails(function () { $GOPS.f(1); });
+
+$export($export.S + $export.F * FAILS_ON_PRIMITIVES, 'Object', {
+  getOwnPropertySymbols: function getOwnPropertySymbols(it) {
+    return $GOPS.f(toObject(it));
+  }
 });
 
 // 24.3.2 JSON.stringify(value [, replacer [, space]])
